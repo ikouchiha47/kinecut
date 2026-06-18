@@ -101,7 +101,8 @@ Only after explicit approval.
 
 **Steps:**
 1. Read `references/scene-types.md` - all fields for every scene type
-2. Read `templates/new-spec.ts` - boilerplate structure
+2. For each scene type you're using, read the corresponding source file in `src/platform/scenes/` (e.g. `TextScene.tsx`, `ScreenshotScene.tsx`, `SlideshowScene.tsx`) — the source is authoritative; docs may be stale
+3. Read `templates/new-spec.ts` - boilerplate structure
 3. Write `src/projects/<project>/specs/<name>.ts`
 4. Add the composition to `src/projects/<project>/index.ts`
 5. Tell the user to run Remotion Studio if not already running:
