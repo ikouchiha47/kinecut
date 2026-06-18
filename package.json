@@ -2,7 +2,7 @@
   "name": "kinecut",
   "version": "1.0.0",
   "scripts": {
-    "preview": "node scripts/sync-projects.js && remotion preview src/index.ts"
+    "preview": "node scripts/sync-projects.cjs && remotion preview src/index.ts"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.290",
