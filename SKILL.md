@@ -200,13 +200,14 @@ Do not write the screenplay until every claim has a source. Silence is not confi
 
 ### 1. Collect Assets (Stage 1)
 
-All assets must be local before any spec is written. Never skip this.
+All assets — images **and fonts** — must be local before any spec is written. Never skip this.
 
 **Ask the user:**
 - What images/screenshots do they have? (URLs, local paths, anything)
 - What key/name to give each one (used as filename and manifest key)
+- What font they want (default: Space Grotesk)
 
-**Run:**
+**Run for images:**
 ```bash
 node scripts/collect-assets.js \
   --dest     public/<project> \
@@ -215,7 +216,33 @@ node scripts/collect-assets.js \
   [--name <key2> --src <path2> ...]
 ```
 
-Show the resulting `assets.yaml`. Do not proceed until all assets are confirmed local.
+**Download fonts locally (always — never use `type: 'google'` in specs):**
+
+```bash
+# Let the script resolve the woff2 URL via Google Fonts API:
+node scripts/download-fonts.cjs "Space Grotesk" "400,700,800,900"
+node scripts/download-fonts.cjs "Inter"
+
+# Or pass the woff2 URL directly (preferred when you already have it):
+node scripts/download-fonts.cjs "Inter" --url "https://fonts.gstatic.com/s/inter/v13/..."
+```
+
+To find a direct woff2 URL, fetch the Google Fonts CSS and extract it:
+```bash
+curl -sA "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36" \
+  "https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=block" \
+  | grep -oE "https://fonts\.gstatic\.com[^)]+"
+```
+
+The script skips download if the file is already cached in `public/fonts/`. It prints the exact `fonts:` entry to paste into your spec:
+
+```ts
+fonts: [
+  { type: 'file', family: 'Space Grotesk', path: 'fonts/SpaceGrotesk.woff2' },
+],
+```
+
+Show the resulting `assets.yaml`. Do not proceed until all assets and fonts are confirmed local.
 
 ---
 
@@ -299,7 +326,8 @@ Only after explicit approval of a screenplay.
 2. Read `references/rcs-format.md`
 3. For each scene type used, read the source in `src/platform/scenes/` — source is authoritative over docs
 4. Read `templates/new-spec.ts`
-5. Write `src/projects/<project>/specs/<name>.ts` with **scenes 1-2 only**
+5. **Verify fonts are local** before writing the spec — check `public/fonts/` and download any missing ones (see Stage 1 font instructions). Never write `type: 'google'` in a spec.
+6. Write `src/projects/<project>/specs/<name>.ts` with **scenes 1-2 only**
 6. Add the composition to `src/projects/<project>/index.ts`
 7. Ensure Remotion Studio is running:
    ```bash

@@ -12,7 +12,7 @@ export const videoConfig: VideoConfig = {
   accentColor:         '#9d5cff',
   fontFamily:          "'Space Grotesk', sans-serif",
   fonts: [
-    { type: 'google', family: 'Space Grotesk', weights: [400, 700, 800, 900] },
+    { type: 'file', family: 'Space Grotesk', path: 'fonts/SpaceGrotesk.woff2' },
   ],
 };
 

@@ -1,9 +1,10 @@
-// Side-effect imports register core effects/overlays/presets into global singletons.
+// Side-effect imports register core effects/overlays/presets/elements into global singletons.
 // These are safe as globals because they use 'core:' namespacing — no project collision.
 import './effects/index';
 import './motion/register';
 import './overlays/index';
 import './presets/index';
+import './elements/index';
 
 // Scene registry is per-composition — export a factory, not a side effect.
 import { RegistryBundle, createRegistryBundle } from './core/registry-bundle';

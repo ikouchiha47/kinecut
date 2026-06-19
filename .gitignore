@@ -2,6 +2,7 @@ node_modules/
 out/
 public/*/
 !public/example/
+!public/fonts/
 dist/
 .DS_Store
 

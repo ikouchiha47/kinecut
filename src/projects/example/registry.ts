@@ -2,7 +2,6 @@ import '../../platform/effects/index';
 import '../../platform/motion/register';
 import '../../platform/overlays/index';
 import '../../platform/presets/index';
-import './elements/index';
 
 import { createPlatformBundle } from '../../platform/registry';
 import { ScreenshotScene } from './scenes/ScreenshotScene';
