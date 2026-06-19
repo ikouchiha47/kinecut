@@ -1,6 +1,7 @@
 {
   "name": "roughcut",
   "version": "1.0.0",
+  "workspaces": ["packages/*"],
   "scripts": {
     "preview": "node scripts/sync-projects.cjs && remotion preview src/index.ts"
   },
