@@ -283,6 +283,37 @@ Rounded label with optional emoji.
 | pos     | Center x,y in stage px       |
 | size    | Width x height in px         |
 
+### `text`
+
+Plain text label. Use this to layer multiple text overlays on a scene manually — one element per line of text.
+
+```
+- text "GINZA LINE" at:0.5s pos:540,200 size:600x60 fontSize:36 color:#ffffff fontWeight:700
+- text "UENO-HIROKOJI" at:0.8s pos:540,380 size:900x160 fontSize:140 color:#60d4f7 fontWeight:900
+- text "銀座線" at:1.0s pos:540,560 size:400x60 fontSize:40 color:#aaaaaa fontWeight:400
+```
+
+| Field        | Description                                    |
+|--------------|------------------------------------------------|
+| value        | The text string (quoted, first positional arg) |
+| at           | Seconds from scene start                       |
+| pos          | Center x,y in stage px                        |
+| size         | Width x height in px                           |
+| fontSize     | Font size in px (default: h × 0.5)            |
+| color        | Text color hex (default: #ffffff)             |
+| fontWeight   | Font weight (default: 800)                    |
+
+**Multiple text overlays** — place as many `text` elements as needed on the same scene. Each has its own `at:` time, position, and size. Combine with `stagger-in` to bring them in sequentially:
+
+```
+- text "DEPARTMENT-STORE" at:1s pos:960,640 size:700x60 fontSize:38 color:#ffffff
+  effect: stagger-in delay:0s enter:fade
+- text "BACKROOMS" at:1s pos:960,760 size:1100x160 fontSize:140 color:#ffffff fontWeight:900
+  effect: stagger-in delay:0.15s enter:slide-up
+- text "ENERGY" at:1s pos:960,870 size:500x50 fontSize:34 color:#aaaaaa
+  effect: stagger-in delay:0.25s enter:fade
+```
+
 ---
 
 ## Effects
